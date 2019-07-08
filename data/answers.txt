@@ -1,0 +1,5 @@
+[1][Nie pamietam]     [2][Nie Twoja sprawa!] [3][Po prostu siê nagrzmoci³em] 
+[1][Ubogim arystokrata]     [2][Alkoholikiem]     [3][Ulicznym wojownikiem]
+[1][W Domu]     [2][W Wietnamie]     [3][Na ulicy]
+[1][Podroznikiem]     [2][Rolnikiem]     [3][Bokserem]
+[1][Osobista zemsta]     [2][Strata ukochanej osoby]     [3][Zadza przygod i slawy]
