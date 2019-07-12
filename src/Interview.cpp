@@ -2,14 +2,13 @@
 #include "Interview.h"
 #include <fstream>
 #include <iostream>
-#include <string>
 
 using dsUmap = std::unordered_map<std::string, std::string>;
 dsUmap Interview::dialogue = Interview::fillUmap("questions.txt", "answers.txt");
 
 dsUmap Interview::fillUmap(const std::string & fn, const std::string & sFn) {
-	std::fstream _qFile(fn);
-	std::fstream _aFile (sFn);
+	std::ifstream _qFile(fn);
+	std::ifstream _aFile (sFn);
 	if (!_qFile || !_aFile) {
 		std::cerr << "Couldn't open file!\n";
 		exit(0);

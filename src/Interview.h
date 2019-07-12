@@ -9,7 +9,5 @@ public:
 private:
 	static std::unordered_map<std::string, std::string> fillUmap(const std::string&, const std::string&);
 };
-
-
 #endif
 

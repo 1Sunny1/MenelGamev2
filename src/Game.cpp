@@ -1,14 +1,12 @@
 #include "pch.h"
 #include "Game.h"
-#include <iostream>
 #include <fstream>
 #include <conio.h>
-#include <Windows.h>
 
 Game::Game() noexcept {
-	loadLogoFromFileToVector();
+	loadDataFromFile("logo.txt", logoArt);
 	showLogo();
-	loadProvincesFromFile();
+	loadDataFromFile("provinces.txt", provinces);
 	startGame();
 }
 
@@ -26,20 +24,20 @@ void Game::setConsoleTextDefault() {
 	SetConsoleTextAttribute(consoleColorHandle::hOut, FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
 }
 
-void Game::loadProvincesFromFile() {
-	std::fstream file("provinces.txt");
+void Game::loadDataFromFile(const std::string & filename, std::vector<std::string> & collection) {
+	std::fstream file(filename);
 	if (!file) {
-		std::cerr << "Cos poszlo nie tak z wczytywaniem provinces.txt.\n";
+		std::cerr << "Error loading " << filename << ".\n";
 		exit(0);
 	}
 	else {
 		std::string lineToRead;
 		while (getline(file, lineToRead))
-			provinces.push_back(lineToRead);
+			collection.push_back(lineToRead);
 	}
 }
 void Game::startGame() {
-	std::cout << "\n\nWcisnij dowolny przycisk, a by rozpoczac swoja rozgrywke!\n\n";
+	std::cout << "\n\nPress any button to begin\n\n";
 	_getch();
 	setMonths();
 	setProvince();
@@ -50,26 +48,13 @@ void Game::setProvince() {
 
 void Game::setMonths() {
 	months =
-	{ "Styczen", "Luty", "Marzec", "Kwiecien", "Maj", "Czerwiec",
-	"Lipiec", "Sierpien", "Wrzesien", "Pazdziernik", "Listopad", "Grudzien" };
+	{"January", "February", "March", "April", "May", "June",
+	"July", "August", "September", "October", "November", "December" };
 }
 
 void Game::showLogo() const {
 	for (auto &s : logoArt)
 		std::cout <<"\t\t\t\t\t" << s << '\n';
-}
-
-void Game::loadLogoFromFileToVector() {
-	std::fstream file("logo.txt");
-	if (!file) {
-		std::cerr << "Cos poszlo nie tak z ladowaniem logo..\n";
-		exit(0);
-	}
-	else {
-		std::string lineToRead;
-		while (getline(file, lineToRead))
-			logoArt.push_back(lineToRead);
-	}
 }
 
 void Game::cls() {			

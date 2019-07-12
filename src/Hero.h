@@ -1,10 +1,9 @@
 #ifndef HERO_H_
 #define HERO_H_
 #include <string>
-#include <memory>
 class Hero {
 public:
-	Hero() = delete;
+	Hero() = default;
 	Hero(std::string name, int health, int mana, int strength, int dexterity) noexcept;
 	std::string getName() const;
 	int getHealth() const;
@@ -17,20 +16,13 @@ public:
 	void addMana(int);
 	void setName(const std::string &);
 	void addRandomAttribute(Hero&);
+	void showHeroStatistics() const;
+	void setDefaults();
 private:
 	std::string name;
 	int health;
 	int mana;
 	size_t strength;
 	size_t dexterity;
-};
-
-class Skills {
-public:
-	Skills();
-private:
-	std::string skillName;
-	size_t damage;
-	size_t manaCost;
 };
 #endif
