@@ -3,6 +3,13 @@
 #include <fstream>
 #include <conio.h>
 
+namespace {
+	constexpr auto red = Game::Color::red;
+	constexpr auto blue = Game::Color::blue;
+	constexpr auto green = Game::Color::green;
+	constexpr auto yellow = Game::Color::yellow;
+}
+
 Game::Game() noexcept {
 	loadDataFromFile("logo.txt", logoArt);
 	showLogo();
@@ -14,9 +21,14 @@ namespace consoleColorHandle {
 	HANDLE hOut;
 }
 
-void Game::setConsoleTextGreen() {
+void Game::setConsoleTextColoured(const Color& color) {
 	consoleColorHandle::hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(consoleColorHandle::hOut, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	switch (color) {
+		case Game::Color::red: SetConsoleTextAttribute(consoleColorHandle::hOut, 12); break;
+		case Game::Color::green: SetConsoleTextAttribute(consoleColorHandle::hOut, 10); break;
+		case Game::Color::blue: SetConsoleTextAttribute(consoleColorHandle::hOut, 11); break; //more like cyan, but for visibility purposes i chosen this one.
+		case Game::Color::yellow: SetConsoleTextAttribute(consoleColorHandle::hOut, 14); break;
+	}
 }
 
 void Game::setConsoleTextDefault() {
@@ -67,4 +79,12 @@ std::vector<std::string> Game::getMonths() const {
 
 std::string Game::getProvince() const {
 	return chosenProvince;
+}
+
+char Game::safeGetChar() {
+	char c;
+	do
+		c = _getch();
+	while (std::strchr("123", c) == nullptr);
+	return c;
 }

@@ -12,12 +12,14 @@ static std::mt19937 gen{ std::random_device{}() };
 class Game final {
 public:
 	explicit Game() noexcept;
-	static void setConsoleTextGreen();
+	enum class Color { red, blue, green, yellow };
+	static void setConsoleTextColoured(const Color&);
 	static void setConsoleTextDefault();
 	template<typename T>
 	static inline T random(T min, T max) {
 		return std::uniform_int_distribution<T>{min, max}(gen);
 	}
+	static char safeGetChar();
 	void prologue();
 	static void cls();
 	std::vector<std::string> getMonths() const;
@@ -26,7 +28,8 @@ public:
 	void startCharacterCreator();
 	void setProvince();
 	std::string createDate();
-
+	void askIfStatisticsGood();
+	void endPrologue();
 private:
 	Hero mainHero;
 	void showLogo() const;
@@ -44,4 +47,5 @@ namespace PrintSleep {
 		Sleep(duration);
 	}
 }
+
 #endif

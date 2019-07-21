@@ -47,21 +47,20 @@ void Hero::addRandomAttribute(Hero & hero) {
 	switch (int randNumber = Game::random<int>(0, 3)) {
 	case 0: hero.addDexterity(Game::random<size_t>(5, 10)); break;
 	case 1: hero.addStrength(Game::random<size_t>(5, 10)); break;
-	case 2: hero.addHealth(Game::random<int>(20, 50)); break;
-	case 3: hero.addMana(Game::random<int>(20, 50)); break;
+	case 2: hero.addHealth(Game::random<int>(10, 30)); break;
+	case 3: hero.addMana(Game::random<int>(10, 30)); break;
 	}
 }
 
 void Hero::showHeroStatistics() const {
-	std::cout << "|Name: \t" << this->name << '\n';
+	std::cout << "|Name: \t\t" << this->name << '\n';
 	std::cout << "|Strength: \t" << this->strength << '\n';
 	std::cout << "|Dexterity: \t" << this->dexterity << '\n';
 	std::cout << "|Health: \t" << this->health << '\n';
-	std::cout << "|Mana: \t" << this->mana << '\n';
+	std::cout << "|Mana: \t\t" << this->mana << '\n';
 }
 
 void Hero::setDefaults() {
-	this->name = "default";
 	this->strength = 10;
 	this->dexterity = 10;
 	this->health = 40;
