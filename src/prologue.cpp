@@ -105,8 +105,12 @@ void Game::endPrologue() {
 	do
 		userChoice = _getch();
 	while (userChoice != '1' && userChoice != '2');
-	if (userChoice == '1')
-		Gameplay::playerWentLeft();
-	else
-		Gameplay::playerWentRight();
+	if (userChoice == '1') {
+		Gameplay x;
+		x.playerWentLeft();
+	}
+	else {
+		Gameplay y;
+		y.playerWentRight();
+	}
 }

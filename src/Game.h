@@ -6,10 +6,11 @@
 #include <iostream>
 #include <Windows.h>
 #include "Hero.h"
+#include "Skill.h"
 
 static std::mt19937 gen{ std::random_device{}() };
 
-class Game final {
+class Game {
 public:
 	explicit Game() noexcept;
 	enum class Color { red, blue, green, yellow };
@@ -19,7 +20,8 @@ public:
 	static inline T random(T min, T max) {
 		return std::uniform_int_distribution<T>{min, max}(gen);
 	}
-	static char safeGetChar();
+	static char safeGetCharThreeArgs();
+	static char safeGetCharTwoArgs();
 	void prologue();
 	static void cls();
 	std::vector<std::string> getMonths() const;
@@ -30,6 +32,7 @@ public:
 	std::string createDate();
 	void askIfStatisticsGood();
 	void endPrologue();
+	Hero getMainHeroObj();
 private:
 	Hero mainHero;
 	void showLogo() const;
@@ -38,7 +41,7 @@ private:
 	std::vector<std::string> months;
 	std::vector<std::string> provinces;
 	void setMonths();
-	std::string chosenProvince;
+	std::string chosenProvince;	
 };
 
 namespace PrintSleep {

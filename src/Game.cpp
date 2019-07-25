@@ -3,6 +3,7 @@
 #include <fstream>
 #include <conio.h>
 
+
 namespace {
 	constexpr auto red = Game::Color::red;
 	constexpr auto blue = Game::Color::blue;
@@ -81,10 +82,22 @@ std::string Game::getProvince() const {
 	return chosenProvince;
 }
 
-char Game::safeGetChar() {
+char Game::safeGetCharThreeArgs() {
 	char c;
 	do
 		c = _getch();
 	while (std::strchr("123", c) == nullptr);
 	return c;
+}
+
+char Game::safeGetCharTwoArgs() {
+	char c;
+	do
+		c = _getch();
+	while (std::strchr("12", c) == nullptr);
+	return c;
+}
+
+Hero Game::getMainHeroObj() {
+	return mainHero;
 }

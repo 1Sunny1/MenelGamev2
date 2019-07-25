@@ -1,6 +1,8 @@
 #ifndef HERO_H_
 #define HERO_H_
 #include <string>
+#include <vector>
+#include "Skill.h"
 class Hero {
 public:
 	Hero() = default;
@@ -18,11 +20,26 @@ public:
 	void addRandomAttribute(Hero&);
 	void showHeroStatistics() const;
 	void setDefaults();
+	int punchDamage();
+	void showSkills();
 private:
+	void fillSkillCollection();
+	std::vector<Skill> skillCollection;
 	std::string name;
 	int health;
 	int mana;
 	size_t strength;
 	size_t dexterity;
+private:
+	int maxHealth{ health };
+	int maxMana{ mana };
+	size_t maxStrength{ strength };
+	size_t maxDexterity{ dexterity };
+private:
+	int punchDmg;
+	int fireball_damage();
+	int lightning_damage();
+	int heal();
+	int meditation();
 };
 #endif
